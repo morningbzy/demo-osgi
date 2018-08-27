@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <parent>
+    <artifactId>demo-osgi</artifactId>
+    <groupId>org.morningbzy.demo</groupId>
+    <version>0.1</version>
+  </parent>
+  <modelVersion>4.0.0</modelVersion>
+
+  <artifactId>osgi-comsumer</artifactId>
+
+  <packaging>jar</packaging>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.8.0</version>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>2.4</version>
+        <configuration>
+          <archive>
+            <manifest>
+              <addClasspath>true</addClasspath>
+              <classpathPrefix>lib/</classpathPrefix>
+            </manifest>
+            <manifestEntries>
+              <Class-Path>${project.build.finalName}.jar</Class-Path>
+              <Built-By>Ponder</Built-By>
+              <Bundle-ManifestVersion>2</Bundle-ManifestVersion>
+              <Bundle-Name>${project.groupId}.${project.artifactId}</Bundle-Name>
+              <Bundle-SymbolicName>${project.name}</Bundle-SymbolicName>
+              <Bundle-Version>${project.version}</Bundle-Version>
+              <Bundle-Vendor>${project.groupId}</Bundle-Vendor>
+              <!--<Bundle-Activator>org.morningbzy.demo.Activator</Bundle-Activator>-->
+              <Import-Package>org.osgi.framework, org.morningbzy.demo.interfaces;version="1.0"</Import-Package>
+            </manifestEntries>
+          </archive>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+  <dependencies>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <version>1.7.25</version>
+      <type>jar</type>
+    </dependency>
+    <dependency>
+      <groupId>org.osgi</groupId>
+      <artifactId>org.osgi.core</artifactId>
+      <version>6.0.0</version>
+      <type>jar</type>
+    </dependency>
+    <dependency>
+      <groupId>org.morningbzy.demo</groupId>
+      <artifactId>osgi-interface</artifactId>
+      <version>0.1</version>
+    </dependency>
+  </dependencies>
+</project>
